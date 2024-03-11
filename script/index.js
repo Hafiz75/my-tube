@@ -58,8 +58,8 @@ async function loadData(idNo) {
 if (arr.length === 0) {
     cardContainer.innerHTML = 
     `
-    <div class="w-[100vw] flex flex-col items-center justify-center">
-    <img class='' src='../images/Icon.png'>
+    <div class="w-[90vw] flex flex-col items-center justify-center">
+    <img class='' src='/images/Icon.png'>
   
     <h1 class="text-[#171717] text-[22px] md:text-3xl font-bold text-center">Oops!! Sorry, There is no <br> content here</h1>
     </div>
