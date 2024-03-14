@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Closure Example</title>
+</head>
+<body>
+  <button id="updateValueBtn">Update Closure Value</button>
+  <button id="getValueBtn">Get Closure Value</button>
+
+  <script>
+    // Outer function
+    function outerFunction() {
+      let closureValue = 0;
+
+      // Inner function
+      function innerFunction() {
+        console.log("Closure value:", closureValue);
+      }
+
+      // Function to update closure value
+      function updateValue(newValue) {
+        closureValue = newValue;
+      }
+
+      // Return inner function and update function
+      return {
+        innerFunction: innerFunction,
+        updateValue: updateValue
+      };
+    }
+
+    // Call outer function to create closure
+    const closure = outerFunction();
+
+    // Event listener for updating closure value
+    document.getElementById('updateValueBtn').addEventListener('click', function() {
+      const newValue = Math.floor(Math.random() * 100); // Random value for demonstration
+      closure.updateValue(newValue);
+      console.log('Closure value updated to:', newValue);
+    });
+
+    // Event listener for accessing closure value
+    document.getElementById('getValueBtn').addEventListener('click', function() {
+      closure.innerFunction();
+    });
+  </script>
+</body>
+</html>
