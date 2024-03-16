@@ -1,23 +1,57 @@
-/* get id by clicking button */
-let idNo
-function loadId(id,bool,sortedArray) {
-   idNo = id;
-  loadData(idNo,bool,sortedArray);
+/* this function create four filter buttons */
+async function createFilterBtns() {
+  let jsonData= await fetch('https://openapi.programming-hero.com/api/videos/categories')
+  let jsonObj = await jsonData.json()
+  let dataArray = jsonObj.data
+  console.log(dataArray);
+  for (const item of dataArray) {
+    let filterBtnsCon = document.getElementById('filterButtonCon')
+    filterBtnsCon.innerHTML += 
+    `
+    <button class="bg-[rgba(37,37,37,0.15)] rounded text-[rgba(37,37,37,0.70)] text-sm md:text-base font-medium py-[5px] md:py-2 px-3 md:px-5" onclick='loadId(${item.category_id})'>${item.category}</button>
+    `
+  }
+  //select all buttons and Add event listener to each filter button for changing background color when clicked.
+let filterBnts = document.querySelectorAll("#filterButtonCon button");
+for (const btn of filterBnts) {
+btn.addEventListener('click',function(event) {
+    event.target.style.backgroundColor = '#FF1F3D';
+    event.target.style.color = '#FFF';
+    for (let otherbtn of filterBnts) {
+      /* select non clicked button and style it. */
+      if (otherbtn != btn) {
+        otherbtn.style.backgroundColor = "rgba(37,37,37,0.15)";
+        otherbtn.style.color = "rgba(37,37,37,0.70)";
+      }
+    }
+  })
 }
+
+}
+ createFilterBtns()
+
+
+/* get id by clicking filter button */
+let idNo
+function loadId(id) {
+   idNo = id;
+  loadData(idNo);
+}
+/* retrieve data like array from 'loadData()' function.this array use for data sorting. */
 let gainArrayFromLoadData
-function functionForGainArrayFromLoadData(arr) {
-  gainArrayFromLoadData = arr
+function functionForGainArrayFromLoadData(dataArray) {
+  gainArrayFromLoadData = dataArray
 }
 /* videos sorting */
-function sorting(dataArray) {
+function sorting() {
  let sortedArray = gainArrayFromLoadData.toSorted(function(a,b) {
   return (parseFloat(b.others.views) - parseFloat(a.others.views))
 })
 display(sortedArray)
 }
 
-/* set default parameter */
-async function loadData(idNo = 1000,bool,sortedArray) {
+/* load data by api by id.If can not get any id set default id is 1000. */
+async function loadData(idNo = 1000) {
   let jsonData = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${idNo}`
   );
@@ -27,7 +61,7 @@ async function loadData(idNo = 1000,bool,sortedArray) {
   functionForGainArrayFromLoadData(dataArray)
     display(dataArray)
 }
-/* show initial data before search by calling loadData */
+/* here call the 'loadData()' function for showing initial data of 'id 1000' before search. */
 loadData();
 
 /* data displayer function */
@@ -35,15 +69,16 @@ function display(dataArray) {
   let cardContainer = document.getElementById("cardContainer");
   cardContainer.innerHTML = "";
   /* dataArray represent 12 array items from api response */
-  let arr = dataArray;
-  /* this variable use for accessing timeContainers nodeList and this variable declare outside 'for loop' for preserve increment value of i from 'for loop' */
+  let dataArrayFromResponse = dataArray;
+  /* this variable use for accessing timeContainers nodeList and this variable 'i' declare outside 'for loop' for preserve increment value from 'for loop'. */
   let i = 0;
-  for (let item of arr) {
+  for (let item of dataArrayFromResponse) {
     /* calculating posting time */
-    let getTime = parseFloat(item.others.posted_date); // return number and NaN.return NaN when posted_date is empty string
+    let getTime = parseFloat(item.others.posted_date); // return number and NaN.Return NaN when posted_date is empty string
     let date = new Date(getTime); //count time form 1970 00:00:00
     let hour = date.getHours();
     let min = date.getMinutes();
+    /* showing card by for of loop */
     for (let authorItem of item.authors) {
       cardContainer.innerHTML += `
              <div class="card">
@@ -88,7 +123,7 @@ function display(dataArray) {
                 </div>
               </div>
             </div>`;
-      /* show verified .this condition write here for accessing the variable of authorItem*/
+      /* show verified .this condition write inside 'for of' loop for accessing the variable of authorItem*/
       let verified = document.querySelectorAll("#verified");
       if (authorItem.verified === true) {
         verified[i].innerHTML += '<i class="fa-solid fa-circle-check"></i>';
@@ -103,7 +138,7 @@ function display(dataArray) {
     }
   } //end of for loop
   /* if dataArray has empty show a message.This dataArray will be empty when we click the drawing button */
-  if (arr.length === 0) {
+  if (dataArrayFromResponse.length === 0) {
     cardContainer.innerHTML = `
     <div class="w-[90vw] m-auto">
     <img class='m-auto' src='./images/Icon.png'>
@@ -113,18 +148,9 @@ function display(dataArray) {
   }
 } //end of display function
 
-// Add event listener to each filter button for background color changing when clicked.
-let filterBnts = document.querySelectorAll("#filterButtonCon button");
-filterBnts.forEach((btn) => {
-  btn.addEventListener("click", function (event) {
-    //change background color and font color when click that button
-    event.target.style.backgroundColor = "red";
-    //this loop use for remove red background color and white text of the button
-    filterBnts.forEach((otherbtns) => {
-      if (otherbtns != btn) {
-        otherbtns.style.backgroundColor = "rgba(37,37,37,0.15)";
-        otherbtns.style.color = "rgba(37,37,37,0.70)";
-      }
-    });
-  });
-});
+/* the function of loading blog html */
+function loadBlogHtml() {
+  window.location.href = 'blog.html'
+}
+
+

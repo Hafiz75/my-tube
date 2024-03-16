@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discussion on the blog</title>
+  <style>
+    body{
+      margin: 10px;
+    }
+    
+    @media screen and (min-width:560px){
+      body{
+        margin: 120px 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <h2>Discuss the scope of var, let and const</h2>
+  <h3>var</h3>
+  <p>Before the introduction of let and const, var was the primary way to declare variables in JavaScript. The scope of a var variable is either the function in which it is declared (function scope) or the global scope if it's declared outside any function.</p>
+  <h3>let</h3>
+  <p>let was introduced in ECMAScript 6 (ES6) to address some of the issues with var. The scope of a let variable is limited to the block in which it is declared (block scope), which is typically denoted by a set of curly braces { }.</p>
+  <h3>const</h3>
+  <p> const is also introduced in ES6 and stands for "constant." Variables declared with const are block-scoped, just like let, but they have an additional characteristic, their value cannot be reassigned once it has been assigned. In other words, const variables are immutable.</p>
+
+  <h2>The use cases of null and undefined</h2>
+  <p>When working with JavaScript and Node.js, it is generally recommended to use null when you want to intentionally represent the absence of a value. This is because null is more explicit, and it shows that you, as the developer, intended for the variable to be empty. On the other hand, undefined is typically used by JavaScript itself to indicate that a variable has not been assigned a value.</p>
+
+  <h2>I mean by REST API</h2>
+  <p>A REST API is an application programming interface that adheres to the constraints of REST architectural style and enables interaction with RESTful web services. Interconnected networks make up the web. A web service is a set of open protocols and standards used for exchanging data between client-server applications. Web services that follow the REST architecture are known as RESTful web services.</p>
+</body>
+</html>

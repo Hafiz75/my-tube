@@ -31,6 +31,7 @@
       max-width: 150px;
     }
   
+
   </style>
   <body class="p-5 md:px-14 md:pt-12 mb-28">
     <header>
@@ -42,8 +43,7 @@
         >
           Sort by view
         </button>
-        <button
-          class="bg-[#FF1F3D] rounded px-4 py-2 text-base md:text-lg font-medium justify-self-end text-white order-2 md:order-3 max-w-24"
+        <button onclick="loadBlogHtml()" class="bg-[#FF1F3D] rounded px-4 py-2 text-base md:text-lg font-medium justify-self-end text-white order-2 md:order-3 max-w-24"
         >
           Blog
         </button>
@@ -53,24 +53,9 @@
 
     <main class="mt-5 md:mt-9">
       <!-- container of filter button -->
+      <!-- these button creates from JS -->
       <div id="filterButtonCon" class="grid grid-cols-2 md:grid-cols-[repeat(4,max-content)] gap-3 md:gap-5 justify-center mt-5 md:mt-8"
       >
-        <button onclick="loadId(1000)" class="bg-[rgba(37,37,37,0.15)] rounded text-[rgba(37,37,37,0.70)] text-sm md:text-base font-medium py-[5px] md:py-2 px-3 md:px-5"
-        >
-          All
-        </button>
-        <button id="" onclick="loadId(1001)"  class="bg-[rgba(37,37,37,0.15)] rounded text-[rgba(37,37,37,0.70)] text-sm md:text-base font-medium py-[5px] md:py-2 px-3 md:px-5"
-        >
-          Music
-        </button>
-        <button id="" onclick="loadId(1003)"  class="bg-[rgba(37,37,37,0.15)] rounded text-[rgba(37,37,37,0.70)] text-sm md:text-base font-medium py-[5px] md:py-2 px-3 md:px-5"
-        >
-          Comedy
-        </button>
-        <button id="" onclick="loadId(1005)" class="bg-[rgba(37,37,37,0.15)] rounded text-[rgba(37,37,37,0.70)] text-sm md:text-base font-medium py-[5px] md:py-2 px-3 md:px-5"
-        >
-          Drawing
-        </button>
       </div>
 
       <!-- card container -->
