@@ -140,7 +140,7 @@ function display(dataArray) {
   /* if dataArray has empty show a message.This dataArray will be empty when we click the drawing button */
   if (dataArrayFromResponse.length === 0) {
     cardContainer.innerHTML = `
-    <div class="w-[90vw] m-auto">
+    <div class="w-[90vw] mx-auto mt-14">
     <img class='m-auto' src='./images/Icon.png'>
     <h1 class="text-[#171717] text-2xl md:text-3xl font-bold text-center">Oops!! Sorry, There is no <br> content here</h1>
     </div>
